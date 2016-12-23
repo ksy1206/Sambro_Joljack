@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmd">
+
+
+
+	
+	<insert id="insertMember_join" parameterType="map">
+	
+		/*	회원 가입	*/
+		INSERT INTO
+					member
+					(
+
+						member_id
+						,password
+						,hp
+						,car_yn
+						
+						
+					)
+		VALUES
+				(
+
+						#{member_id}
+						,#{password}
+						,#{hp}
+						,#{car_yn}
+						
+				)
+	</insert>
+	
+	
+	<select id="getMemberInfo" parameterType="map" resultType="cmd.vo.CmdVO">
+		/* 사용자 정보 조회 */
+		SELECT
+						member_no
+						,member_id
+						,password
+						,hp
+						,car_yn
+						
+		FROM
+						member 
+			
+		WHERE 	
+				1=1
+				<if test="member_id != null and member_id != ''">
+				AND member_id = #{member_id}
+				</if>
+				<if test="member_no != null and member_no != ''">
+				AND member_no = #{member_no}
+				</if>
+				<if test="password !=null and password != ''">
+				AND password = #{password}
+				</if>
+				<if test="hp != null and hp != ''  and hp != 'null' ">
+				AND hp = #{hp}
+				</if>
+				<if test="car_yn != null and car_yn != '' and car_yn != 'null'">
+				AND car_yn = #{car_yn}
+				</if>
+				
+						
+	</select>
+	
+	
+
+	
+	<select id="get_carpool_list" parameterType="map" resultType="cmd.vo.CmdVO">
+		
+		SELECT * FROM carpool WHERE 1=1 
+		<if test="carpool_no !=null and carpool_no != ''">
+				AND carpool_no = #{carpool_no}
+		</if>						
+		<if test="cnt !=null and cnt != ''">
+				AND cnt = #{cnt}
+		</if>	
+		<if test="end_point !=null and end_point != ''">
+				AND end_point = #{end_point}
+		</if>	
+		<if test="pay !=null and pay != ''">
+				AND pay = #{pay}
+		</if>				
+						
+	</select>
+	
+	
+	<insert id="insert_carpool" parameterType="map" >
+
+		INSERT INTO
+					carpool
+					(
+						start_time
+						,start_point
+						,end_point
+						,cnt
+						,pay
+						,title
+						,member_no
+						,latitude
+						,longitude
+						,hp
+
+					)
+		VALUES
+					(
+						#{start_time}
+						,#{start_point}
+						,#{end_point}
+						,#{cnt}
+						,#{pay}
+						,#{title}
+						,#{member_no}
+						,#{latitude}
+						,#{longitude}
+						,#{hp}
+						
+					)
+	</insert>
+	
+	<update id="delete_carpool" parameterType="map">
+		delete from carpool where carpool_no = #{carpool_no}
+	</update>
+		<update id="delete_carpool_all" parameterType="map">
+		delete from carpool where member_no = #{member_no}
+	</update>
+	<update id="update_carpool" parameterType="map">
+		UPDATE 
+			carpool
+		SET
+			 start_time = #{start_time}
+			 ,start_point = #{start_point} 
+			 ,end_point = #{end_point}
+			 ,cnt = #{cnt}
+			 ,pay = #{pay} 
+			 ,end_yn = #{end_yn}
+		WHERE
+			carpool_no = #{carpool_no}
+	</update>
+	
+		<insert id="insert_channel" parameterType="map" >
+
+		INSERT INTO
+					channel
+					(
+						channel_no
+						
+
+					)
+		VALUES
+					(
+						#{channel_no}
+
+					)
+	</insert>
+	
+	
+		<select id="get_channel" resultType="String">
+		
+		SELECT max(channel_no) as channel_no FROM channel   
+		
+						
+	</select>
+	
+</mapper>
