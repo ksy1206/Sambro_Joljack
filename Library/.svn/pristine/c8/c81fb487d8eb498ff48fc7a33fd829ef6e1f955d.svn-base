@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmd">
+
+		
+	<select id="login_check" resultType="cmd.vo.MemberVO" parameterType="map">
+		/* 회원 아이디 비번 check*/
+		SELECT
+			*
+		FROM
+			member
+		WHERE
+			member_id = #{member_id}
+			and
+			member_pwd = #{member_pwd}
+	</select>
+	
+	<select id="member_id_check" parameterType="map" resultType="cmd.vo.MemberVO">
+		/* 아이디 중복 체크 */
+		SELECT
+			*
+		FROM
+			member
+		WHERE
+			member_id = #{member_id};
+	</select>
+
+	<insert id="insert_member" parameterType="map">
+		/* 회원 가입 */
+		INSERT INTO
+			member
+				(
+					member_id
+					, member_pwd
+					, member_name
+					, member_phone
+					, member_address
+				)
+			VALUES
+				(
+					#{member_id}
+					, #{member_pwd}
+					, #{member_name}
+					, #{member_phone}
+					, #{member_address}
+				)
+			
+	</insert>
+	
+	<select id="select_sit_check" parameterType="map" resultType="map">
+		/*자리체크 리스트*/
+		SELECT
+			*
+		FROM
+			sit
+	</select>
+	
+	<select id="select_sit_id" parameterType="map" resultType="cmd.vo.SitVO">
+		/*자리 사용중 여부 확인*/
+		SELECT
+			*
+		FROM
+			sit
+		WHERE
+			sit_id = #{sit_id}
+	</select>
+	
+	<update id="update_sit" parameterType="map">
+		/*자리 예약하기*/
+		UPDATE
+			sit
+		SET
+			use_yn = 'ing'
+			, member_no = #{member_no}
+			, insertDate = #{insertDate}
+		WHERE
+			sit_id = #{sit_id}
+	</update>
+	
+	<update id="delete_sit" parameterType="map">
+		/*자리 반납하기*/
+		UPDATE
+			sit
+		SET
+			use_yn = 'n'
+			, member_no = null
+			, insertDate = null
+		WHERE
+			sit_id = #{sit_id}
+	</update>
+	
+	<update id="insert_sit" parameterType="map">
+		/*자리 사용하기*/
+		UPDATE
+			sit
+		SET
+			use_yn = 'y'
+			, member_no = #{member_no}
+			, insertDate = #{insertDate}
+		WHERE
+			sit_id = #{sit_id}
+	</update>
+	
+	<select id="select_book_list" parameterType="map" resultType="map">
+		/*책 리스트 불러오기*/
+		SELECT
+			*
+		FROM
+			book
+		<where>
+			<if test="search_data != '' and search_data != null and search_data != 'undefined'">
+				book_name like CONCAT('%', #{search_data} , '%')
+				or
+				book_code like CONCAT('%', #{search_data} , '%')
+			</if>
+		</where>
+	</select>
+	
+	<update id="book_return" parameterType="map">
+		/*도서 반납하기*/
+		UPDATE
+			book
+		SET
+			use_yn = 'y'
+			, member_no = null
+		WHERE
+			book_no = #{book_no}
+	</update>
+	
+	<update id="book_rental" parameterType="map">
+		/*도서 대여하기*/
+		UPDATE
+			book
+		SET
+			use_yn = 'n'
+			, member_no = #{member_no}
+		WHERE
+			book_no = #{book_no}
+	</update>
+	
+</mapper>
