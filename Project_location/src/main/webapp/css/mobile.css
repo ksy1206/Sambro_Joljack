@@ -1,0 +1,28 @@
+.board_page{
+	font-family:'GodoM';
+	font-weight: normal !important;
+	background-color:#fff !important;
+}
+.board_header{
+	border:1 !important;
+}
+.board_header, .board_header h1{
+	background-color:#29A9C8 !important;
+	color:#fff !important;
+	font-weight: normal !important;
+	text-shadow: none !important;
+}
+.intro_footer{
+	background-color:#29A9C8 !important;
+	border:0;
+	text-shadow: 0px 0px 0px #000 !important;
+	font-size:8px !important;
+	color:#fff !important;
+	font-family:'GodoM';
+	font-weight: normal !important;   
+	position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 0 auto;
+    width: 100%;
+}
