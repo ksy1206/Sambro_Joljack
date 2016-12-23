@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmd">
+
+	<insert id="insert_member" parameterType="cmd.vo.MemberVO">
+		/* 회원가입  */
+		INSERT INTO
+			member
+			(
+				member_email
+				, member_name
+				, member_pwd
+				, member_phone
+			)
+		VALUES
+			(
+				#{member_email}
+				, #{member_name}
+				, #{member_pwd}
+				, #{member_phone}
+			)
+	</insert>
+	
+	<select id="member_id_check" parameterType="map" resultType="cmd.vo.MemberVO">
+		/* 아이디 중복 체크 */
+		SELECT
+			*
+		FROM
+			member
+		WHERE
+			member_email = #{member_email};
+	</select>
+	
+	<select id="login_check" parameterType="map" resultType="cmd.vo.MemberVO">
+		/* 로그인 체크 */
+		SELECT
+			*
+		FROM
+			member
+		WHERE
+			member_email = #{member_email}
+			AND
+			member_pwd = #{member_pwd}
+	</select>
+	
+	<insert id="insert_date" parameterType="map">
+		/*데이터 저장*/
+		INSERT INTO
+			data
+			(
+				member_no
+				, category
+				, data
+				, insertDate
+				<if test="category == '01'">
+				, work
+				</if>
+			)
+		VALUES
+			(
+				#{member_no}
+				, #{category}
+				, #{data}
+				, #{insertDate}
+				<if test="category == '01'">
+				, #{work}
+				</if>
+			)
+	</insert>
+	
+	<select id="select_list" parameterType="map" resultType="cmd.vo.DataVO">
+		/*리스트 불러오기*/
+		SELECT
+			*
+		FROM
+			data
+		WHERE
+			member_no = #{member_no}
+		ORDER BY insertDate DESC;
+	</select>
+	
+	<select id="getLanking" parameterType="map" resultType="cmd.vo.DataVO">
+		/*랭킹 리스트 불러오기*/
+		SELECT
+			a.member_no
+			, b.member_name
+			, SUM(DISTINCT a.work) AS WORK
+			, a.insertDate
+		FROM
+			DATA a
+		JOIN
+			member b
+		ON
+			a.member_no = b.member_no
+		WHERE
+			category = '01'
+		AND
+			insertDate = #{insertDate}
+		GROUP BY member_no
+		ORDER BY WORK DESC;
+	</select>
+	
+</mapper>
