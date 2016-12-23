@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmd">
+
+	<select id="login_check" resultType="cmd.vo.MemberVO" parameterType="map">
+		/* 회원 아이디 비번 체크 */
+		SELECT
+			*
+		FROM
+			QRSchool_member
+		WHERE
+			member_id = #{member_id}
+			AND 
+			member_password = #{member_password}
+	</select>
+
+	<update id="update_phone_code" parameterType="map">
+		/* 업데이트 폰 코드 */
+		UPDATE
+			QRSchool_member
+		SET
+			phone_code = #{phone_code}
+			, login_check = #{login_check}
+		WHERE
+			member_id = #{member_id}		
+	</update>
+	
+	<select id="auto_login_check" parameterType="map" resultType="cmd.vo.MemberVO">
+		SELECT
+			login_check
+			, check_grade
+		FROM
+			QRSchool_member
+		WHERE
+			phone_code = #{phone_code}
+	</select>
+	
+	<update id="delete_phoneKey" parameterType="map">
+		UPDATE
+			QRSchool_member
+		SET
+			phone_code = null
+			, login_check = "false"
+		WHERE
+			member_no = #{member_no}		
+	</update>
+	
+	<select id="select_attend_list" parameterType="map" resultType="map">
+		SELECT
+			m.member_no
+			, m.member_name
+			, m.member_id
+			, c.class_no
+			, c.class_code
+			, c.attend
+			, c.question
+			, c.reason
+			, c.insertDate
+		FROM
+			QRSchool_class c
+		JOIN
+			QRSchool_member m
+		ON 
+			c.member_no = m.member_no
+		WHERE
+			c.class_code = #{class_code}
+			<if test="member_no != null">				
+				AND c.member_no = #{member_no}
+			</if>			
+	</select>
+	
+	<select id="attend_count" parameterType="map" resultType="map">
+		SELECT
+			m.member_no,
+			c.class_code,
+			(
+				SELECT
+					COUNT(*)
+				FROM
+					QRSchool_class
+				WHERE
+					member_no = #{member_no}
+				AND class_code = #{class_code}
+				AND attend = "출석"
+			)AS count_attend_01,
+			(
+				SELECT
+					COUNT(*)
+				FROM
+					QRSchool_class
+				WHERE
+					member_no = #{member_no}
+				AND class_code = #{class_code}
+				AND attend = "지각"
+			)AS count_attend_02,
+			(
+				SELECT
+					COUNT(*)
+				FROM
+					QRSchool_class
+				WHERE
+					member_no = #{member_no}
+				AND class_code = #{class_code}
+				AND attend = "결석"
+			)AS count_attend_03,
+			(
+				SELECT
+					COUNT(*)
+				FROM
+					QRSchool_class
+				WHERE
+					member_no = #{member_no}
+				AND class_code = #{class_code}
+				AND attend = "병가"
+			)AS count_attend_04
+		FROM
+			QRSchool_class c
+		JOIN QRSchool_member m ON c.member_no = m.member_no
+		WHERE
+			c.class_code = #{class_code}
+		AND c.member_no = #{member_no}
+		GROUP BY 
+			member_no
+			
+	</select>
+	
+	<select id="attend_class_count" parameterType="map" resultType="map">
+		SELECT
+			c.class_code,
+			(
+				SELECT
+					COUNT(*)
+				FROM
+					QRSchool_class
+				WHERE
+					class_code = #{class_code}
+				AND attend = "출석"
+			)AS count_attend_01,
+			(
+				SELECT
+					COUNT(*)
+				FROM
+					QRSchool_class
+				WHERE
+					class_code = #{class_code}
+				AND attend = "지각"
+			)AS count_attend_02,
+			(
+				SELECT
+					COUNT(*)
+				FROM
+					QRSchool_class
+				WHERE
+					class_code = #{class_code}
+				AND attend = "결석"
+			)AS count_attend_03,
+			(
+				SELECT
+					COUNT(*)
+				FROM
+					QRSchool_class
+				WHERE
+					class_code = #{class_code}
+				AND attend = "병가"
+			)AS count_attend_04
+		FROM
+			QRSchool_class c
+		JOIN QRSchool_member m ON c.member_no = m.member_no
+		WHERE
+			c.class_code = #{class_code}
+		GROUP BY 
+			c.class_code
+	</select>
+	
+	<insert id="insert_attend" parameterType="map">
+		INSERT INTO
+			QRSchool_class
+			(
+				member_no
+				, class_code
+				, attend
+				, insertDate
+			)
+		VALUES
+			(
+				#{member_no}
+				, #{class_code}
+				, #{attend}
+				, #{insertDate}
+			)
+	</insert>
+	
+	<update id="add_question" parameterType="map">
+		UPDATE
+			QRSchool_class
+		SET
+			question = "yes"
+			, reason = #{reason}
+		WHERE
+			class_no = #{class_no}
+	</update>
+	
+	<select id="select_attend_reason" parameterType="map" resultType="String">
+		SELECT
+			reason
+		FROM
+			QRSchool_class
+		WHERE
+			class_no = #{class_no}
+	</select>
+	
+	<update id="attend_reason_update" parameterType="map">
+		UPDATE
+			QRSchool_class
+		SET
+			attend = #{attend}
+		WHERE
+			class_no = #{class_no}
+	</update>
+	
+</mapper>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+
+	<select id="select_notice_list" parameterType="map" resultType="map">
+		SELECT
+			*
+		FROM
+			QRSchool_notice
+	</select>
+	
+	<select id="push_list" parameterType="map" resultType="map">
+		SELECT
+			phone_code
+		FROM
+			QRSchool_member
+		WHERE
+			check_grade = "학생"
+	</select>
+
+	<insert id="insert_notice" parameterType="map">
+		INSERT INTO
+			QRSchool_notice
+			(				
+				notice_writer
+				, class_code
+				, notice_title
+				, notice_content
+				, notice_deadline
+			)
+		VALUES
+			(
+				#{notice_writer}
+				, #{class_code}
+				, #{notice_title}
+				, #{notice_content}
+				, #{notice_deadline}
+			)
+	</insert>
+	
+	<select id="select_notice_no" parameterType="map" resultType="map">
+		SELECT
+			n.notice_no
+			, n.notice_writer
+			, n.class_code
+			, n.notice_title
+			, n.notice_content
+			, n.notice_deadline
+			, m.member_name
+		FROM
+			QRSchool_notice n
+		JOIN
+			QRSchool_member m
+		ON
+			n.notice_writer = m.member_no
+		WHERE
+			n.notice_no = #{notice_no}
+	</select>
+	
+</mapper>
