@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* css document */
+
+
+.nav_bookmarket {
+	margin-top : 20px;
+	display : inline-block;
+	list-style: none;
+}
+.nav_bookmarket li{
+	display : inline;
+	background-color : white;
+}
+.nav_bookmarket li a{
+	color: black;
+	text-decoration: none;
+	padding: 10px;
+}
+
+.menu_bookmarket {
+	border-top : 1px solid black;
+	border-bottom: 1px solid black;
+}
+.menu_bookmarket ul{
+	
+}
+.menu_bookmarket ul li{
+	font-size: 20px;
+}

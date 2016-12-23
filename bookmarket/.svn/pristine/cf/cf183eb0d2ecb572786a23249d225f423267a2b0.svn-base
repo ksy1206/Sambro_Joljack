@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmd">
+
+
+
+
+	
+	
+	<select id="get_category_sub_list" parameterType="map" resultType="cmd.vo.CmdVO">
+		
+		SELECT
+			*				
+		FROM
+			bookmarket_category_sub
+			
+		WHERE 	
+			1=1
+			<if test="category_no != null and category_no != ''">
+			AND category_no = #{category_no}
+			</if>
+		ORDER BY 
+			category_sub_no asc					
+	</select>
+	
+	<insert id="insert_product" parameterType="map" >
+
+		INSERT INTO
+					bookmarket_product
+					(
+					
+						product_name
+						,product_maker
+						,product_company
+						,category_no
+						,category_sub_no
+						,insert_date
+						,file_name
+						,file_path
+						,member_no
+						,product_kind
+						,product_price
+						
+					)
+		VALUES
+					(
+
+						
+						#{product_name}
+						,#{product_maker}
+						,#{product_company}
+						,#{category_no}
+						,#{category_sub_no}
+						,NOW()
+						,#{file_name}
+						,#{file_path}
+						,#{member_no}
+						,#{product_kind}
+						,#{product_price}
+						
+						
+					)
+	</insert>
+	
+		<select id="univ_book_listCount" resultType="java.lang.Integer" parameterType="map">
+	    SELECT
+			COUNT(*) as count
+		FROM
+			bookmarket_product 
+		WHERE
+		 	product_kind = '1'
+		 <if test="category_no != null and category_no != '' and category_no != 0 ">
+			AND category_no = #{category_no}
+		 </if>	
+		  <if test="category_sub_no != null and category_sub_no != '' and category_sub_no != 0">
+			AND category_sub_no = #{category_sub_no}
+		 </if>
+	</select>
+	
+	<select id="study_supply_listCount" resultType="java.lang.Integer" parameterType="map">
+	     SELECT
+			COUNT(*) as count
+		FROM
+			bookmarket_product 
+		WHERE
+		 	product_kind = '2'
+		 <if test="category_no != null and category_no != '' and category_no != 0 ">
+			AND category_no = #{category_no}
+		 </if>	
+		  <if test="category_sub_no != null and category_sub_no != '' and category_sub_no != 0">
+			AND category_sub_no = #{category_sub_no}
+		 </if>
+	</select>
+	
+		<update id="delete_product" parameterType="map">
+		DELETE FROM bookmarket_product where product_no = #{product_no}
+	</update>
+	
+	
+	<select id="get_univ_book" parameterType="map" resultType="cmd.vo.CmdVO">
+		SELECT 
+			p.product_no
+			,p.product_name
+			,p.product_maker
+			,p.product_company
+			,p.category_no
+			,p.category_sub_no
+			,p.insert_date
+			,p.file_name
+			,p.file_path
+			,p.member_no
+			,p.product_kind
+			,FORMAT(p.product_price,0) as product_price
+			,m.member_id as product_member_id 
+		FROM 
+			bookmarket_product p
+		LEFT JOIN
+		 	bookmarket_member m 
+		ON 
+		 p.member_no = m.member_no 		
+		WHERE
+		 	p.product_kind = '1'
+		 <if test="category_no != null and category_no != '' and category_no != 0 ">
+			AND p.category_no = #{category_no}
+		 </if>	
+		  <if test="category_sub_no != null and category_sub_no != '' and category_sub_no != 0">
+			AND p.category_sub_no = #{category_sub_no}
+		 </if>
+		
+		<if test="order == null or order == '' or order == 'insert_date' ">
+			ORDER BY 	
+				insert_date DESC
+		 </if>	  
+		 <if test="order == 'product_name' ">
+			ORDER BY 	
+				product_name ASC
+		 </if>	 
+		 <if test="order == 'product_price' ">
+			ORDER BY 	
+				product_price ASC
+		 </if>	 
+		 LIMIT
+			#{startRowNum}
+			, #{endRowNum};   	
+		   						
+	</select>
+	
+	<select id="get_study_supply" parameterType="map" resultType="cmd.vo.CmdVO">
+		SELECT 
+			p.product_no
+			,p.product_name
+			,p.product_maker
+			,p.product_company
+			,p.category_no
+			,p.category_sub_no
+			,p.insert_date
+			,p.file_name
+			,p.file_path
+			,p.member_no
+			,p.product_kind
+			,FORMAT(p.product_price,0) as product_price
+			,m.member_id as product_member_id 
+		FROM 
+			bookmarket_product p
+		LEFT JOIN
+		 	bookmarket_member m 
+		ON 
+		 p.member_no = m.member_no 		
+		WHERE
+		 	p.product_kind = '2'
+		 <if test="category_no != null and category_no != '' and category_no != 0 ">
+			AND p.category_no = #{category_no}
+		 </if>	
+		  <if test="category_sub_no != null and category_sub_no != '' and category_sub_no != 0">
+			AND p.category_sub_no = #{category_sub_no}
+		 </if>
+		 <if test="order == null or order == '' or order == 'insert_date' ">
+			ORDER BY 	
+				insert_date DESC
+		 </if>	  
+		 <if test="order == 'product_name' ">
+			ORDER BY 	
+				product_name ASC
+		 </if>	 
+		 <if test="order == 'product_price' ">
+			ORDER BY 	
+				product_price ASC
+		 </if>	  
+		 LIMIT
+			#{startRowNum}
+			, #{endRowNum};  	
+	</select>
+	
+		
+	<insert id="insert_choise" parameterType="map" >
+
+		INSERT INTO
+					bookmarket_choise
+					(
+					
+						 
+						 member_no
+						 ,product_no
+						
+					)
+		VALUES
+					(
+
+						
+						
+						#{member_no}
+						,#{product_no}
+						
+					)
+	</insert>
+	
+		
+	<insert id="insert_pocket" parameterType="map" >
+
+		INSERT INTO
+					bookmarket_pocket
+					(
+					
+						
+						 member_no
+						 ,product_no
+						
+					)
+		VALUES
+					(
+
+						
+						
+						#{member_no}
+						,#{product_no}
+						
+					)
+	</insert>
+	
+	
+		
+	<select id="getMainList" parameterType="map" resultType="cmd.vo.CmdVO">
+		SELECT 
+			p.*,m.member_id as product_member_id 
+		FROM 
+			bookmarket_product p
+		LEFT JOIN
+		 	bookmarket_member m 
+		ON 
+		 p.member_no = m.member_no 		
+		WHERE
+		 	p.product_kind = '1'
+
+			ORDER BY 	
+				insert_date DESC
+
+		 LIMIT 3;   	
+		   						
+	</select>
+	
+			
+			
+	<insert id="send_msg" parameterType="map" >
+
+		INSERT INTO
+					bookmarket_msg
+					(
+					
+						
+						 sender_no
+						 ,reciver_no
+						 ,content
+						 ,insert_date
+						
+					)
+		VALUES
+					(
+
+						
+						
+						#{sender_no}
+						,#{reciver_no}
+						,#{content}
+						,NOW()
+						
+					)
+	</insert>
+	
+			
+	<select id="getMsgList" parameterType="map" resultType="cmd.vo.CmdVO">
+		SELECT 
+			m1.msg_no
+			,m1.reciver_no
+			,m1.sender_no
+			,m1.content
+			,m2.member_id AS reciver_id 
+			,m3.member_id AS sender_id
+		FROM 
+			bookmarket_msg m1
+		LEFT JOIN
+		 	bookmarket_member m2 
+		 ON 
+		 m1.reciver_no = m2.member_no 		
+		LEFT JOIN
+			 bookmarket_member m3 
+		ON m1.sender_no = m3.member_no 
+		
+		
+		WHERE
+		 	(sender_no = #{sender_no}  AND reciver_no =  #{reciver_no}) OR (sender_no =  #{reciver_no} AND reciver_no = #{sender_no}) 
+		ORDER BY 	
+				insert_date desc
+
+		
+		   						
+	</select>
+	
+
+	
+	<select id="get_msg_list" parameterType="map" resultType="map">
+		
+		SELECT 
+			m1.msg_no
+			,m1.reciver_no
+			,m1.sender_no
+			,m2.member_id 
+		FROM 
+			bookmarket_msg m1
+		LEFT JOIN
+		 	bookmarket_member m2 
+		ON 
+		 m1.sender_no = m2.member_no 	
+		WHERE 
+		 	m1.sender_no = #{member_no}	 OR m1.reciver_no = #{member_no}			
+		GROUP BY 
+			 m1.sender_no , m1.reciver_no 
+		HAVING 
+			sender_no != #{member_no}		
+		ORDER BY 
+			m1.msg_no DESC
+		
+	</select>
+	
+</mapper>

@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* css document */
+
+.name {
+	margin: 20px;
+}
+.name div{
+
+	background-color : white;
+	color: black;
+	margin: 20px;
+	padding: 20px;
+	display: inline-block !important;
+}
+
+.nav {
+	display : inline-block !important;
+	list-style: none;
+}
+.nav li{
+	display : inline !important;
+	background-color : white;
+}
+.nav li a{
+	color: black;
+	text-decoration: none;
+	padding: 10px;
+}
+.menu {
+	border-top : 1px solid black;
+	border-bottom: 1px solid black;
+}
+.menu ul{
+	
+}
+.menu ul li{
+	font-size: 20px;
+}
+
+
+.title {
+	text-align: center;
+	margin: 20px;
+}
+
+.title div {
+	border: 1px solid #a6a6a6;
+	display: inline-block;
+	padding: 10px 50px;
+}
+
+.body {
+	text-align: center;
+}
+.body .contents{
+	border: 1px solid #a6a6a6;
+	padding: 30px 70px;
+	margin: 0 auto;
+}
+.login{
+	margin: 35px;
+}
+.login div{
+	display: inline-block;
+}
+.login label{
+	float : left;
+}
+.join div{
+	display: inline-block;
+}
+.join p{
+	display: inline-block;
+}
+.login-btn {
+	background-color: #a6a6a6;
+	padding: 3px 30px;
+	color: #eaeaea;
+}
+.join-btn {
+	background-color: #a6a6a6;
+	padding: 3px 30px;
+	color: #eaeaea;
+}

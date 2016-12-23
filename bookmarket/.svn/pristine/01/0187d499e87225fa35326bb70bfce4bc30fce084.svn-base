@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+	<select id="login_check" resultType="cmd.vo.MemberVO" parameterType="map">
+		/* 회원 아이디 비번 check*/
+		SELECT
+			*
+		FROM
+			bookmarket_member
+		WHERE
+			member_id = #{member_id}
+			and
+			member_pwd = #{member_pwd}
+	</select>
+	
+	<select id="find_id" resultType="cmd.vo.MemberVO" parameterType="map">
+		/* 회원 아이디 찾기*/
+		SELECT
+			*
+		FROM
+			bookmarket_member
+		WHERE
+			member_name = #{member_name}
+			and
+			member_pwd = #{member_pwd}
+			and
+			question = #{question}
+			and
+			answer = #{answer}	
+	</select>
+	
+	<select id="find_pwd" resultType="cmd.vo.MemberVO" parameterType="map">
+		/* 회원 비밀번호 찾기*/
+		SELECT
+			*
+		FROM
+			bookmarket_member
+		WHERE
+			member_id = #{member_id}
+			and
+			member_name = #{member_name}
+			and
+			question = #{question}
+			and
+			answer = #{answer}
+	</select>
+
+	<insert id="insert_member" parameterType="map">
+		/* 회원 가입 */
+		INSERT INTO
+			bookmarket_member
+				(
+					member_id
+					, member_pwd
+					, question
+					, answer
+					, member_name
+					, postcode_num
+					, addr1
+					, addr2
+					, phone1
+					, phone2
+					, phone3
+					, mobile1
+					, mobile2
+					, mobile3
+					, email1
+					, email2
+				)
+			VALUES
+				(
+					#{member_id}
+					, #{member_pwd}
+					, #{question}
+					, #{answer}
+					, #{member_name}
+					, #{postcode_num}
+					, #{addr1}
+					, #{addr2}
+					, #{phone1}
+					, #{phone2}
+					, #{phone3}
+					, #{mobile1}
+					, #{mobile2}
+					, #{mobile3}
+					, #{email1}
+					, #{email2}
+				)			
+	</insert>
+		
+</mapper>
