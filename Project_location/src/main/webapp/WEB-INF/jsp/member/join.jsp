@@ -138,7 +138,7 @@
 <body>
 <div data-role="page">
 	<div data-role="hearder" data-position="fixed" style="text-align: center; background-color: #21B4D6;">
-		<p style="font-size: 3em !important; color: #fff;">My Precious</p>
+		<p style="font-size: 3em !important; color: #fff;">MAZZI</p>
 	</div>
 	
 	<!-- 아이디 중복체크 -->

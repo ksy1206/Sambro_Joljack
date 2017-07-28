@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%  
+<%
 	String cp = request.getContextPath();
 %>
 <!DOCTYPE html>
@@ -34,35 +34,42 @@ function dangerArea_delete(){
 	location.href="<%=cp%>/web/dangerArea_delete.do";
 }
 function logout(){
-	location.href="<%=cp%>/web/logout.do";
-}
+	location.href="<%=cp%>
+	/web/logout.do";
+	}
 </script>
 </head>
 
 <body>
-<div class="container-fluid" style="background-color:#2196F3;color:#fff;height:100px;">
-  <h1>관리자 PAGE <input type="button" value="로그아웃" onclick="logout()" class="btn btn-default" style="right: 1em; position: absolute;"></h1>
- 
-</div>
-<br>
+	<div class="container-fluid"
+		style="background-color: #2196F3; color: #fff; height: 100px;">
+		<h1>
+			관리자 PAGE <input type="button" value="로그아웃" onclick="logout()"
+				class="btn btn-default" style="right: 1em; position: absolute;">
+		</h1>
 
-<div class="container">
-  <div class="row">
-    <nav class="col-sm-3">
-      <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
-<!--         <li class="active"><a href="#" onclick="">맛집 등록</a></li> -->
-		<li><a href="#" onclick="company_add()">업체 등록</a></li>
-        <li><a href="#" onclick="company_modify_delete()">업체 수정 및 삭제</a></li>
-        <li><a href="#" onclick="dangerArea_add()">위험지역 등록</a></li>
-        <li><a href="#" onclick="dangerArea_delete()">위험지역 삭제</a></li>
-      </ul>
-    </nav>
-    <div class="col-sm-9">   
-      <h1>어플 관리자에 오신것을 환영 합니다.</h1>
-      <p>이곳에서 설정하면 모든 어플 사용자들에게 적용 됩니다.</p>
-      <p>왼쪽 카테고리를 클릭하여 원하는 설정을 할 수 있습니다.</p>
-    </div>
-  </div>
-</div>
+	</div>
+	<br>
+
+	<div class="container">
+		<div class="row">
+			<nav class="col-sm-3">
+				<ul class="nav nav-pills nav-stacked" data-spy="affix"
+					data-offset-top="205">
+					<!--<li class="active"><a href="#" onclick="">맛집 등록</a></li> -->
+					<li><a href="#" onclick="company_add()">업체 등록</a></li>
+					<li><a href="#" onclick="company_modify_delete()">업체 수정 및
+							삭제</a></li>
+					<li><a href="#" onclick="dangerArea_add()">위험지역 등록</a></li>
+					<li><a href="#" onclick="dangerArea_delete()">위험지역 삭제</a></li>
+				</ul>
+			</nav>
+			<div class="col-sm-9">
+				<h1>어플 관리자에 오신것을 환영 합니다.</h1>
+				<p>이곳에서 설정하면 모든 어플 사용자들에게 적용 됩니다.</p>
+				<p>왼쪽 카테고리를 클릭하여 원하는 설정을 할 수 있습니다.</p>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

@@ -64,7 +64,7 @@ function details(c_no){
 	<div data-role="page">		
 				
 		<div data-role="hearder" data-position="fixed" style="text-align: center; background-color: #21B4D6;">
-			<p style="font-size: 3em !important; color: #fff;">My Precious</p>
+			<p style="font-size: 3em !important; color: #fff;">MAZZI</p>
 		</div>
 		
 		<input type="hidden" value="${sessionScope.sessionData.memberInfo.getMember_no()}" id="member_no" name="member_no">
@@ -74,18 +74,17 @@ function details(c_no){
 		<div data-role="content">
 			<div align="center">
 				<input type="button" value="내 위치" class="btn btn-info" id="pageMove_main" style="margin-bottom: 1em;">
-				<input type="button" value="리스트" class="btn btn-info" id="pageMove_list" style="margin-bottom: 1em;">
-				<input type="button" value="위험지역" class="btn btn-info" id="pageMove_dangerArea" style="margin-bottom: 1em; right: 0em !important;">
+				<input type="button" value="맛집 리스트" class="btn btn-info" id="pageMove_list" style="margin-bottom: 1em;">
 			</div>
 			
 			<div>
 				<select id="c_type" name="c_type" onchange="select_list_c_type()">
-				  <option selected="selected" value="undefined">업종 선택</option>
-				  <option value="맛집">맛집</option>
-				  <option value="화장실">화장실</option>
-				  <option value="옷가게">옷가게</option>
-				  <option value="로드샵">로드샵</option>
-				  <option value="기타">기타</option>
+					<option selected="selected" value="undefined">업종 선택</option>
+					<option value="맛집">맛집</option>
+					<option value="화장실">화장실</option>
+					<option value="옷가게">옷가게</option>
+					<option value="로드샵">로드샵</option>
+					<option value="기타">기타</option>
 				</select>
 			</div>
 			<c:forEach var="data" items="${companyList}">

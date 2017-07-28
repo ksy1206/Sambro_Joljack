@@ -57,7 +57,7 @@ function connect(url, number){
 		<input type="hidden" value="${companyVo.c_longitude}" id="c_longitude">
 		
 		<div data-role="hearder" data-position="fixed" style="text-align: center; background-color: #21B4D6;">
-			<p style="font-size: 3em !important; color: #fff;">My Precious</p>
+			<p style="font-size: 3em !important; color: #fff;">MAZZI</p>
 		</div>
 		
 		<div data-role="content">						

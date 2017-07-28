@@ -68,20 +68,19 @@ function receiveLocation(location) {
 
 </head>
 <body>
-	<div data-role="page">		
+	<div data-role="page">
 		
 		<input type="hidden" value="${sessionScope.sessionData.memberInfo.getMember_no()}" id="member_no" name="member_no">
 		<input type="hidden" value="37.6063242" id="latitude">
 		<input type="hidden" value="127.0925842" id="longitude">
 		
 		<div data-role="hearder" data-position="fixed" style="text-align: center; background-color: #21B4D6;">
-			<p style="font-size: 3em !important; color: #fff;">My Precious</p>
+			<p style="font-size: 3em !important; color: #fff;">MAZZI</p>
 		</div>
 		
 		<div data-role="content" align="center">
 			<input type="button" value="내 위치" class="btn btn-info" id="pageMove_main" style="margin-bottom: 1em;">
-			<input type="button" value="리스트" class="btn btn-info" id="pageMove_list" style="margin-bottom: 1em; right: 0em !important;">
-			<input type="button" value="위험지역" class="btn btn-info" id="pageMove_dangerArea" style="margin-bottom: 1em; right: 0em !important;">
+			<input type="button" value="맛집 리스트" class="btn btn-info" id="pageMove_list" style="margin-bottom: 1em; right: 0em !important;">
 			<div id="map-canvas" style="width: 100%; height: 250px;"></div>
 		</div>		
 		
@@ -123,15 +122,7 @@ function receiveLocation(location) {
                icon: image, // 마커로 사용할 이미지(변수)
             info: '바로 여기~!',
 //             title: '' // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
-        });        
-
-//         var content = ""; // 말풍선 안에 들어갈 내용         
-
-        // 마커를 클릭했을 때의 이벤트. 말풍선 뿅~
-//         var infowindow = new google.maps.InfoWindow({ content: content});
-//         google.maps.event.addListener(marker, "click", function() {
-//             infowindow.open(map,marker);
-//         });
+        });
       }
 
       google.maps.event.addDomListener(window, 'load', initialize);

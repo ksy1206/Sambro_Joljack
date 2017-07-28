@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%  
+<%
 	String cp = request.getContextPath();
-	String member_no="";
+	String member_no = "";
 	boolean isSession = true;
-	
+
 	if (session.getAttribute("member_no") != null) {
-	   
+
 		member_no = session.getAttribute("member_no").toString();
-	  
+
 	} else {
-	    isSession = false;
-	    session.removeAttribute("sessionData");
+		isSession = false;
+		session.removeAttribute("sessionData");
 	}
 %>
 <!DOCTYPE html>
@@ -19,10 +19,13 @@
 <head>
 <title>위치</title>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=320, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="viewport"
+	content="width=320, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script
+	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 
 <script src="../js/bootstrap.js"></script>
 <link rel="stylesheet" href="../css/mobile.css">
@@ -70,23 +73,29 @@
 	function join_btn(){
 		location.href="<%=cp%>/member/join.do";
 	}
-
 </script>
 </head>
 
 <body>
 
-<div data-role="page">
-	<div data-role="hearder" data-position="fixed" style="text-align: center; background-color: #21B4D6;">
-		<p style="font-size: 3em !important; color: #fff;">My Precious</p>
+	<div data-role="page">
+		<div data-role="hearder" data-position="fixed" style="text-align: center; background-color: #21B4D6;">
+			<p style="font-size: 3em !important; color: #fff;">MAZZI</p>
+		</div>
+		<div data-role="content">
+		
+			<div align="center">
+				<img src="../img/logo.png" id="" style="margin-top: .5em; margin-bottom:.5em; width: 100%;">
+			</div>
+		
+			<input type="text" value="" id="member_id" placeholder="ID">
+			<input type="password" value="" id="member_pwd" placeholder="Password">
+			<div align="center">
+				<input type="button" value="로그인" onclick="login_btn()" class="btn btn-info">
+				<input type="button" value="회원가입" onclick="join_btn()" class="btn btn-default">
+			</div>
+		</div>
 	</div>
-	<div data-role="content">
-		<input type="text" value="" id="member_id" placeholder="ID">
-		<input type="password" value="" id="member_pwd" placeholder="Password">
-		<input type="button" value="로그인" onclick="login_btn()" class="btn btn-info">
-		<input type="button" value="회원가입" onclick="join_btn()" class="btn btn-default">
-	</div>
-</div>
 
 </body>
 </html>
