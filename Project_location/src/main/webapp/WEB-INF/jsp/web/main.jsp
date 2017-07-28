@@ -34,18 +34,15 @@ function dangerArea_delete(){
 	location.href="<%=cp%>/web/dangerArea_delete.do";
 }
 function logout(){
-	location.href="<%=cp%>
-	/web/logout.do";
-	}
+	location.href="<%=cp%>/web/logout.do";
+}
 </script>
 </head>
 
 <body>
-	<div class="container-fluid"
-		style="background-color: #2196F3; color: #fff; height: 100px;">
+	<div class="container-fluid" style="background-color: #2196F3; color: #fff; height: 100px;">
 		<h1>
-			관리자 PAGE <input type="button" value="로그아웃" onclick="logout()"
-				class="btn btn-default" style="right: 1em; position: absolute;">
+			관리자 PAGE <input type="button" value="로그아웃" onclick="logout()" class="btn btn-default" style="right: 1em; position: absolute;">
 		</h1>
 
 	</div>
@@ -58,10 +55,9 @@ function logout(){
 					data-offset-top="205">
 					<!--<li class="active"><a href="#" onclick="">맛집 등록</a></li> -->
 					<li><a href="#" onclick="company_add()">업체 등록</a></li>
-					<li><a href="#" onclick="company_modify_delete()">업체 수정 및
-							삭제</a></li>
-					<li><a href="#" onclick="dangerArea_add()">위험지역 등록</a></li>
-					<li><a href="#" onclick="dangerArea_delete()">위험지역 삭제</a></li>
+					<li><a href="#" onclick="company_modify_delete()">업체 수정 및 삭제</a></li>
+<!-- 					<li><a href="#" onclick="dangerArea_add()">위험지역 등록</a></li> -->
+<!-- 					<li><a href="#" onclick="dangerArea_delete()">위험지역 삭제</a></li> -->
 				</ul>
 			</nav>
 			<div class="col-sm-9">

@@ -79,12 +79,12 @@ function details(c_no){
 			
 			<div>
 				<select id="c_type" name="c_type" onchange="select_list_c_type()">
-					<option selected="selected" value="undefined">업종 선택</option>
-					<option value="맛집">맛집</option>
-					<option value="화장실">화장실</option>
-					<option value="옷가게">옷가게</option>
-					<option value="로드샵">로드샵</option>
-					<option value="기타">기타</option>
+					<option selected="selected" value="">업종 선택</option>
+					<option value='korea'>한식</option>
+					<option value='china'>중식</option>
+					<option value='japan'>일식</option>
+					<option value='italy'>이탈리안</option>
+					<option value='etc'>기타</option>
 				</select>
 			</div>
 			<c:forEach var="data" items="${companyList}">

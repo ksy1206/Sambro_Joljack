@@ -147,47 +147,47 @@ function getLocation() {
 			
 			<input type="hidden" value="${sessionScope.sessionData.memberInfo.getMember_no()}" id="member_no" name="member_no">
 			
-			  <div class="form-group">
-			    <label for="c_name">업체명</label>
-			    <input type="text" class="form-control" id="c_name" name="c_name">
-			  </div>
-			  
-			  <div class="form-group">
-			    <label for="c_type">업종</label>
+			<div class="form-group">
+				<label for="c_name">업체명</label>
+				<input type="text" class="form-control" id="c_name" name="c_name">
+			</div>
+			
+			<div class="form-group">
+				<label for="c_type">업종</label>
 				<select id="c_type" name="c_type">
-				  <option selected="selected" value="">업종 선택</option>
-				  <option value="맛집">맛집</option>
-				  <option value="화장실">화장실</option>
-				  <option value="옷가게">옷가게</option>
-				  <option value="로드샵">로드샵</option>
-				  <option value="기타">기타</option>
+					<option selected="selected" value="">업종 선택</option>
+					<option value='korea'>한식</option>
+					<option value='china'>중식</option>
+					<option value='japan'>일식</option>
+					<option value='italy'>이탈리안</option>
+					<option value='etc'>기타</option>
 				</select>
-			  </div>
-			  
-			  <div class="form-group">
-			    <label for="c_address">주소</label>
-			    <input type="text" class="form-control" id="c_address" name="c_address" onchange="change_address()">
-			  </div>
-			  
-			  <div class="ui-grid-a">
-			  	<div class="ui-block-a">
+			</div>
+			
+			<div class="form-group">
+				<label for="c_address">주소</label>
+				<input type="text" class="form-control" id="c_address" name="c_address" onchange="change_address()">
+			</div>
+			
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
 					<input type="text" value="위도" id="latitude" name="c_latitude" readonly="readonly">
 				</div>
 				<div class="ui-block-b">
 					<input type="text" value="경도" id="longitude" name="c_longitude" readonly="readonly">
-				</div>				  
-			  </div>
-			  
-			  <div class="form-group">
-			    <label for="c_phone">연락처</label>
-			    <input type="number" class="form-control" id="c_phone" name="c_phone">
-			  </div>
-			  
-			  <div class="form-group">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="c_phone">연락처</label>
+				<input type="number" class="form-control" id="c_phone" name="c_phone">
+			</div>
+			
+			<div class="form-group">
 				<label for="c_content">상세 정보</label>
 				<textarea class="form-control" rows="10" id="c_content" style="resize:none;" name="c_content"></textarea>
-			  </div>
-			  <input type="button" value="등록" id="singUp" class="btn btn-default" style="position: fixed; right:1.5em !important;">
+			</div>
+			<input type="button" value="등록" id="singUp" class="btn btn-default" style="position: fixed; right:1.5em !important;">
 			</form>
 		</div>
 				

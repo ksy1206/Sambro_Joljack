@@ -119,37 +119,37 @@ function c_modify(c_no){
 			  html +=	"<div class='form-group'>";
 			  html +=		"<label for='c_type'>종류</label>";
 			  html +=		"<select id='c_type' name='c_type'>";
-			  if(data.companyVo.c_type == '맛집'){
-				  html +=		"<option value='맛집' selected='selected'>맛집</option>";
-				  html +=		"<option value='화장실'>화장실</option>";
-				  html +=		"<option value='옷가게'>옷가게</option>";
-				  html +=		"<option value='로드샵'>로드샵</option>";
-				  html +=		"<option value='기타'>기타</option>";
-			  } else if (data.companyVo.c_type == '화장실'){
-				  html +=		"<option value='맛집'>맛집</option>";
-				  html +=		"<option value='화장실' selected='selected'>화장실</option>";
-				  html +=		"<option value='옷가게'>옷가게</option>";
-				  html +=		"<option value='로드샵'>로드샵</option>";
-				  html +=		"<option value='기타'>기타</option>";
-			  } else if (data.companyVo.c_type == '옷가게'){
-				  html +=		"<option value='맛집'>맛집</option>";
-				  html +=		"<option value='화장실'>화장실</option>";
-				  html +=		"<option value='옷가게' selected='selected'>옷가게</option>";
-				  html +=		"<option value='로드샵'>로드샵</option>";
-				  html +=		"<option value='기타'>기타</option>";
-			  } else if (data.companyVo.c_type == '로드샵'){
-				  html +=		"<option value='맛집'>맛집</option>";
-				  html +=		"<option value='화장실'>화장실</option>";
-				  html +=		"<option value='옷가게'>옷가게</option>";
-				  html +=		"<option value='로드샵' selected='selected'>로드샵</option>";
-				  html +=		"<option value='기타'>기타</option>";
-			  } else if (data.companyVo.c_type == '기타'){
-				  html +=		"<option value='맛집'>맛집</option>";
-				  html +=		"<option value='화장실'>화장실</option>";
-				  html +=		"<option value='옷가게'>옷가게</option>";
-				  html +=		"<option value='로드샵'>로드샵</option>";
-				  html +=		"<option value='기타' selected='selected'>기타</option>";
-			  }			  
+			if(data.companyVo.c_type == 'korea'){
+				  html +=		"<option value='korea' selected='selected'>한식</option>";
+				  html +=		"<option value='china'>중식</option>";
+				  html +=		"<option value='japan'>일식</option>";
+				  html +=		"<option value='italy'>이탈리안</option>";
+				  html +=		"<option value='etc'>기타</option>";
+			} else if (data.companyVo.c_type == 'china'){
+				  html +=		"<option value='korea'>한식</option>";
+				  html +=		"<option value='china' selected='selected'>중식</option>";
+				  html +=		"<option value='japan'>일식</option>";
+				  html +=		"<option value='italy'>이탈리안</option>";
+				  html +=		"<option value='etc'>기타</option>";
+			} else if (data.companyVo.c_type == 'japan'){
+				  html +=		"<option value='korea'>한식</option>";
+				  html +=		"<option value='china'>중식</option>";
+				  html +=		"<option value='japan' selected='selected'>일식</option>";
+				  html +=		"<option value='italy'>이탈리안</option>";
+				  html +=		"<option value='etc'>기타</option>";
+			} else if (data.companyVo.c_type == 'italy'){
+				  html +=		"<option value='korea'>한식</option>";
+				  html +=		"<option value='china'>중식</option>";
+				  html +=		"<option value='japan'>일식</option>";
+				  html +=		"<option value='italy' selected='selected'>이탈리안</option>";
+				  html +=		"<option value='etc'>기타</option>";
+			}	else if (data.companyVo.c_type == 'etc'){
+				  html +=		"<option value='korea'>한식</option>";
+				  html +=		"<option value='china'>중식</option>";
+				  html +=		"<option value='japan'>일식</option>";
+				  html +=		"<option value='italy'>이탈리안</option>";
+				  html +=		"<option value='etc' selected='selected'>기타</option>";
+			}		  
 			  html +=		"</select>";
 			  html +=	"</div>";
 			  

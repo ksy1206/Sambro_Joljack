@@ -26,26 +26,26 @@ $(document).ready(function(){
 	$("#admin_food").click(function(){
 		location.href="<%=cp%>/main/adminCompany.do"
 	});
-	
-	$("#admin_danger").click(function(){
-		location.href="<%=cp%>/main/adminDangerAreaAdd.do"
-	});
-	
+
 });
 </script>
 
 </head>
 <body>
-	<div data-role="page">		
+	<div data-role="page">
 		<div data-role="hearder" data-position="fixed" style="text-align: center; background-color: #21B4D6;">
 			<p style="font-size: 3em !important; color: #fff;">MAZZI</p>
 		</div>
 		
-		<div data-role="content" align="center" style="margin-top: 3em;">
-			<p style="margin-bottom: 3em;"><input type="button" value="업체 관리" class="btn btn-primary btn-lg" id="admin_food"></p>
-			<input type="button" value="위험지역 관리" class="btn btn-primary btn-lg" id="admin_danger">
-			
-		</div>		
+		<div data-role="content" align="center">
+			<div align="center">
+				<img src="../img/logo.png" id="" style="margin-top: .5em; margin-bottom:2em; width: 100%;">
+			</div>
+		
+			<p style="margin-bottom: 3em;">
+				<input type="button" value="나의 맛집 관리" class="btn btn-primary btn-lg" id="admin_food">
+			</p>
+		</div>
 		
 		<div data-role="footer" data-position="fixed" style="text-align: center; background-color: #21B4D6;">
 			<p style="margin-top: 10px; color: #fff;">어플 관리</p>

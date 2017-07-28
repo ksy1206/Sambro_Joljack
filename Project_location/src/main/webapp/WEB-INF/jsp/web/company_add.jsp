@@ -127,14 +127,11 @@ function getLocation() {
   <div class="row">
     <nav class="col-sm-3">
       <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
-<!--         <li class="active"><a href="#" onclick="">맛집 등록</a></li> -->
 		<li class="active"><a href="#" onclick="company_add()">업체 등록</a></li>
         <li><a href="#" onclick="company_modify_delete()">업체 수정 및 삭제</a></li>
-        <li><a href="#" onclick="dangerArea_add()">위험지역 등록</a></li>
-        <li><a href="#" onclick="dangerArea_delete()">위험지역 삭제</a></li>
       </ul>
     </nav>
-    <div class="col-sm-9">   
+    <div class="col-sm-9">
       <h1>업체 등록</h1>
       	<form role="form" method="post" id="addCompany_form" name="addCompany_form" style="margin-top: 1em;">
 			<div>
@@ -148,12 +145,12 @@ function getLocation() {
 			  <div class="form-group">
 			    <label for="c_type">업종</label>
 				<select class="form-control" id="c_type" name="c_type">
-				  <option selected="selected" value="">업종 선택</option>
-				  <option value="맛집">맛집</option>
-				  <option value="화장실">화장실</option>
-				  <option value="옷가게">옷가게</option>
-				  <option value="로드샵">로드샵</option>
-				  <option value="기타">기타</option>
+					<option selected="selected" value="">업종 선택</option>
+					<option value='korea'>한식</option>
+					<option value='china'>중식</option>
+					<option value='japan'>일식</option>
+					<option value='italy'>이탈리안</option>
+					<option value='etc'>기타</option>
 				</select>
 			  </div>
 			  
